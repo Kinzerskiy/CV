@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton Zinin — iOS Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    background: #f0f0f0;
+    color: #1c1c1c;
+    font-family: 'Inter', sans-serif;
+    padding: 32px 24px;
+    line-height: 1.6;
+  }
+
+  .cv-wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+    background: #ffffff;
+  }
+
+  /* HEADER */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  .name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .role {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 20px;
+  }
+
+  .stack-line {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 16px;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    padding: 3px 10px;
+    border: 1px solid #d8d8d8;
+    font-size: 0.72rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding-left: 40px;
+    border-left: 1px solid #e4e4e4;
+    justify-content: center;
+  }
+
+  .contact-item {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #555;
+    text-decoration: none;
+  }
+
+  .contact-item svg { width: 14px; height: 14px; color: #aaa; flex-shrink: 0; }
+
+  /* BODY */
+  .body-grid { display: grid; grid-template-columns: 1fr 300px; }
+
+  .main-col { padding: 40px 48px; border-right: 1px solid #e4e4e4; }
+
+  .side-col { padding: 40px 32px; background: #f8f8f8; }
+
+  /* SECTION */
+  .section { margin-bottom: 36px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #aaa;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  /* SUMMARY */
+  .summary-text { font-size: 0.88rem; color: #555; line-height: 1.8; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 28px; }
+
+  .exp-item { display: grid; grid-template-columns: 12px 1fr; gap: 16px; }
+
+  .exp-line-col { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
+
+  .exp-dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; flex-shrink: 0; }
+
+  .exp-vline { width: 1px; flex: 1; background: #e8e8e8; margin-top: 5px; }
+
+  .exp-item:last-child .exp-vline { display: none; }
+
+  .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+
+  .exp-company { font-size: 0.95rem; font-weight: 600; color: #111; }
+
+  .exp-period { font-size: 0.72rem; color: #bbb; white-space: nowrap; }
+
+  .exp-role { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
+
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 8px;
+    font-size: 0.58rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    border: 1px solid;
+  }
+
+  .level-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+  .level-junior  { color: #7080c0; border-color: #c0c8ee; background: #f0f2fc; }
+  .level-junior::before  { background: #7080c0; }
+  .level-middle  { color: #3a9090; border-color: #b0dada; background: #f0fafa; }
+  .level-middle::before  { background: #3a9090; }
+  .level-senior  { color: #666; border-color: #d0d0d0; background: #f5f5f5; }
+  .level-senior::before  { background: #999; }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+
+  .exp-bullets li { font-size: 0.8rem; color: #666; padding-left: 14px; position: relative; line-height: 1.65; }
+
+  .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: #ccc; }
+
+  /* SIDEBAR */
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .stat-card { background: #fff; border: 1px solid #e4e4e4; padding: 14px 10px; text-align: center; }
+
+  .stat-number { font-size: 1.8rem; font-weight: 700; color: #111; line-height: 1; margin-bottom: 4px; }
+
+  .stat-label { font-size: 0.6rem; color: #bbb; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .strength-list { display: flex; flex-direction: column; gap: 7px; }
+
+  .strength-item { font-size: 0.8rem; color: #666; padding-left: 14px; position: relative; }
+
+  .strength-item::before { content: '–'; position: absolute; left: 0; color: #ccc; }
+
+  .skill-group { margin-bottom: 12px; }
+  .skill-group:last-child { margin-bottom: 0; }
+
+  .skill-group-name { font-size: 0.58rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #ccc; margin-bottom: 6px; }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .skill-tag { padding: 2px 8px; background: #fff; border: 1px solid #e0e0e0; font-size: 0.72rem; color: #666; }
+
+  .delivery-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .delivery-item { display: grid; grid-template-columns: 22px 1fr; gap: 8px; }
+
+  .delivery-num { font-size: 0.65rem; color: #ccc; font-weight: 600; padding-top: 2px; }
+
+  .delivery-text { font-size: 0.8rem; color: #666; line-height: 1.65; }
+
+  @media (max-width: 768px) {
+    body { padding: 0; background: #fff; }
+
+    .cv-wrapper { background: #fff; }
+
+    .header {
+      grid-template-columns: 1fr;
+      padding: 28px 20px 24px;
+      gap: 24px;
+    }
+
+    .name { font-size: 2.2rem; }
+
+    .contact-block {
+      padding-left: 0;
+      border-left: none;
+      border-top: 1px solid #e4e4e4;
+      padding-top: 20px;
+    }
+
+    .body-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .main-col {
+      padding: 28px 20px;
+      border-right: none;
+      border-bottom: 1px solid #e4e4e4;
+    }
+
+    .side-col {
+      padding: 28px 20px;
+      background: #f8f8f8;
+    }
+
+    .stat-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .exp-company { font-size: 0.9rem; }
+
+    .pills { gap: 5px; }
+    .pill { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="name">Anton Zinin</div>
+      <div class="role">iOS Developer</div>
+      <div class="stack-line">Swift · SwiftUI · UIKit · Objective-C</div>
+      <div class="pills">
+        <span class="pill">MVVM</span>
+        <span class="pill">VIPER</span>
+        <span class="pill">Combine</span>
+        <span class="pill">RxSwift</span>
+        <span class="pill">Core Data</span>
+        <span class="pill">Firebase</span>
+        <span class="pill">StoreKit</span>
+      </div>
+    </div>
+    <div class="contact-block">
+      <span class="contact-item">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Kyiv, Ukraine
+      </span>
+      <a class="contact-item" href="mailto:kinzzersky@gmail.com">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        kinzzersky@gmail.com
+      </a>
+      <span class="contact-item">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        +380 99 104 18 45
+      </span>
+      <a class="contact-item" href="https://t.me/ankin_zersky">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+        @ankin_zersky
+      </a>
+      <a class="contact-item" href="https://linkedin.com/in/anton-kinzerskiy">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        linkedin.com/in/anton-kinzerskiy
+      </a>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="main-col">
+
+      <div class="section">
+        <div class="section-title">About</div>
+        <p class="summary-text">iOS Developer with 3+ years of hands-on experience building apps end-to-end and shipping 30+ releases to the App Store. Strong in Swift, SwiftUI, UIKit, and Objective-C, with solid experience turning Figma designs and API specifications into polished production-ready mobile products. Comfortable with reactive flows, scalable architecture, networking, and feature delivery that balances product quality, performance, and reliability.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Experience</div>
+        <div class="exp-list">
+
+          <div class="exp-item">
+            <div class="exp-line-col"><div class="exp-dot"></div><div class="exp-vline"></div></div>
+            <div>
+              <div class="exp-header">
+                <div class="exp-company">Upwork</div>
+                <div class="exp-period">2024 — Present</div>
+              </div>
+              <span class="level-badge level-senior">Senior</span>
+              <div class="exp-role">Freelance iOS Developer · Top Rated</div>
+              <ul class="exp-bullets">
+                <li>Top Rated freelancer with strong client feedback and production experience across shipped iOS work</li>
+                <li>Delivered keyboard features, app lock flows, SwiftUI app finalization, image editing flows, paywall implementation, and UI modernization</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-line-col"><div class="exp-dot"></div><div class="exp-vline"></div></div>
+            <div>
+              <div class="exp-header">
+                <div class="exp-company">Light Apps</div>
+                <div class="exp-period">Nov 2024 — Present</div>
+              </div>
+              <span class="level-badge level-senior">Senior</span>
+              <div class="exp-role">iOS Developer</div>
+              <ul class="exp-bullets">
+                <li>Develop iOS applications from scratch and ship production-ready features for live products</li>
+                <li>Handle custom requirements, complex UI implementation, and ongoing feature delivery</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-line-col"><div class="exp-dot"></div><div class="exp-vline"></div></div>
+            <div>
+              <div class="exp-header">
+                <div class="exp-company">StarMagic · UK</div>
+                <div class="exp-period">Jul — Sep 2024</div>
+              </div>
+              <span class="level-badge level-middle">Middle</span>
+              <div class="exp-role">iOS Developer</div>
+              <ul class="exp-bullets">
+                <li>Worked in an existing codebase using RxSwift and Objective-C</li>
+                <li>Delivered new features and resolved bugs in a live application</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-line-col"><div class="exp-dot"></div><div class="exp-vline"></div></div>
+            <div>
+              <div class="exp-header">
+                <div class="exp-company">Rimone Holding · France</div>
+                <div class="exp-period">Jan — Jul 2024</div>
+              </div>
+              <span class="level-badge level-middle">Middle</span>
+              <div class="exp-role">iOS Developer</div>
+              <ul class="exp-bullets">
+                <li>Worked with SwiftUI and implemented timer-based functionality</li>
+                <li>Built paywall and onboarding flows and developed a kids drawing app from scratch</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-line-col"><div class="exp-dot"></div><div class="exp-vline"></div></div>
+            <div>
+              <div class="exp-header">
+                <div class="exp-company">Mobile Int, LLC · USA</div>
+                <div class="exp-period">Oct 2023 — Jan 2024</div>
+              </div>
+              <span class="level-badge level-junior">Junior</span>
+              <div class="exp-role">iOS Developer</div>
+              <ul class="exp-bullets">
+                <li>Worked with VIPER architecture in a production project</li>
+                <li>Implemented camera integration, API calls, and user authentication with Firebase-backed data flows</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Delivery Strengths</div>
+        <div class="delivery-list">
+          <div class="delivery-item"><span class="delivery-num">01</span><span class="delivery-text">End-to-end delivery from Figma and API documentation to polished App Store-ready builds</span></div>
+          <div class="delivery-item"><span class="delivery-num">02</span><span class="delivery-text">Pixel-perfect interface implementation across UIKit and SwiftUI codebases</span></div>
+          <div class="delivery-item"><span class="delivery-num">03</span><span class="delivery-text">Stable networking, JSON parsing, and clean separation between UI, domain, and data layers</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="side-col">
+
+      <div class="section">
+        <div class="section-title">At a Glance</div>
+        <div class="stat-row">
+          <div class="stat-card"><div class="stat-number">30+</div><div class="stat-label">App Store Releases</div></div>
+          <div class="stat-card"><div class="stat-number">3+</div><div class="stat-label">Years Experience</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Strengths</div>
+        <div class="strength-list">
+          <div class="strength-item">End-to-end product delivery</div>
+          <div class="strength-item">Pixel-perfect UI implementation</div>
+          <div class="strength-item">Production bug fixing</div>
+          <div class="strength-item">Performance & stability focus</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Core Stack</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Languages</div>
+          <div class="skill-tags"><span class="skill-tag">Swift</span><span class="skill-tag">SwiftUI</span><span class="skill-tag">UIKit</span><span class="skill-tag">Obj-C</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Architecture</div>
+          <div class="skill-tags"><span class="skill-tag">MVVM</span><span class="skill-tag">MVC</span><span class="skill-tag">VIPER</span><span class="skill-tag">SOLID</span><span class="skill-tag">Clean Arch</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Reactive</div>
+          <div class="skill-tags"><span class="skill-tag">Combine</span><span class="skill-tag">RxSwift</span><span class="skill-tag">RxCocoa</span><span class="skill-tag">async/await</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Networking</div>
+          <div class="skill-tags"><span class="skill-tag">URLSession</span><span class="skill-tag">Alamofire</span><span class="skill-tag">REST API</span><span class="skill-tag">Codable</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Data & Backend</div>
+          <div class="skill-tags"><span class="skill-tag">Firebase</span><span class="skill-tag">Core Data</span><span class="skill-tag">Realm</span><span class="skill-tag">CloudKit</span><span class="skill-tag">Keychain</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">UI & Animation</div>
+          <div class="skill-tags"><span class="skill-tag">Auto Layout</span><span class="skill-tag">SnapKit</span><span class="skill-tag">Lottie</span><span class="skill-tag">SDWebImage</span><span class="skill-tag">AVFoundation</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Monetisation</div>
+          <div class="skill-tags"><span class="skill-tag">StoreKit</span><span class="skill-tag">RevenueCat</span><span class="skill-tag">Paywalls</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Tools</div>
+          <div class="skill-tags"><span class="skill-tag">Xcode</span><span class="skill-tag">Git</span><span class="skill-tag">SPM</span><span class="skill-tag">CocoaPods</span><span class="skill-tag">TestFlight</span><span class="skill-tag">Instruments</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
