@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Anton Zinin — Senior iOS Engineer, AI-powered apps</title>
+<meta name="description" content="Senior iOS engineer building AI-powered apps for Apple platforms. Swift, SwiftUI, UIKit, LLM and generative media integration, on-device ML, App Store release and review. 30+ App Store releases.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #e9ebee;
+  --surface: #ffffff;
+  --ink: #14161a;
+  --muted: #5b626e;
+  --rule: #d5d9df;
+  --accent: #3b2ce0;
+  --signal: #0e7c66;
+  --shadow: 0 1px 0 rgba(20, 22, 26, .04), 0 12px 32px -24px rgba(20, 22, 26, .5);
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --chip-core: #b5aef0;
+  --chip-ai: #9ecabe;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --stack: clamp(3rem, 7vw, 5.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #101216;
+    --surface: #171a1f;
+    --ink: #e7e9ec;
+    --muted: #99a1ad;
+    --rule: #2a2f37;
+    --accent: #8a7bff;
+    --signal: #34c0a2;
+    --shadow: none;
+    --chip-core: #4a4380;
+    --chip-ai: #2f6a5c;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "cv05";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color .18s ease, color .18s ease;
+}
+
+a:hover { color: var(--accent); border-color: var(--accent); }
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.masthead {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead-grid {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+@media (min-width: 900px) {
+  .masthead-grid { grid-template-columns: minmax(0, 1fr) 17rem; align-items: end; }
+}
+
+.name {
+  font-family: var(--display);
+  font-variation-settings: "wdth" 116, "wght" 700;
+  font-size: clamp(2.75rem, 9.5vw, 6.5rem);
+  line-height: .92;
+  letter-spacing: -.025em;
+  margin: .5rem 0 0;
+  text-wrap: balance;
+}
+
+.role {
+  font-family: var(--display);
+  font-variation-settings: "wdth" 108, "wght" 500;
+  font-size: clamp(1.05rem, 2.3vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  margin: 1.1rem 0 0;
+  max-width: 34ch;
+}
+
+.role em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.specblock {
+  border-top: 2px solid var(--ink);
+  padding-top: .85rem;
+}
+
+.specblock dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .35rem 1rem;
+  font-family: var(--mono);
+  font-size: .78rem;
+}
+
+.specblock dt { color: var(--muted); }
+.specblock dd { margin: 0; text-align: right; }
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  margin-top: 1.75rem;
+  font-family: var(--mono);
+  font-size: .82rem;
+}
+
+.contacts a { border-bottom-color: transparent; }
+.contacts a:hover { border-bottom-color: var(--accent); }
+
+.section {
+  padding: var(--stack) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-grid {
+  display: grid;
+  gap: 1.5rem clamp(1.5rem, 4vw, 3rem);
+}
+
+@media (min-width: 900px) {
+  .section-grid { grid-template-columns: 11rem minmax(0, 1fr); }
+}
+
+.section-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 500;
+}
+
+.prose {
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  max-width: 68ch;
+  margin: 0;
+}
+
+.prose p { margin: 0 0 1.1rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { font-weight: 600; }
+
+.entries { display: grid; gap: 2.75rem; }
+
+.entry { display: grid; gap: .85rem; }
+
+@media (min-width: 720px) {
+  .entry { grid-template-columns: 12rem minmax(0, 1fr); gap: 1.5rem; }
+}
+
+.entry-meta {
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--muted);
+  display: grid;
+  gap: .2rem;
+  align-content: start;
+}
+
+.entry-company {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+.entry-role {
+  font-family: var(--display);
+  font-variation-settings: "wdth" 108, "wght" 600;
+  font-size: 1.18rem;
+  letter-spacing: -.01em;
+  margin: 0 0 .6rem;
+}
+
+.bullets { margin: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+
+.bullets li {
+  position: relative;
+  padding-left: 1.15rem;
+  max-width: 70ch;
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .68em;
+  width: .45rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 760px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  align-content: start;
+  gap: .6rem;
+}
+
+.card h3 {
+  font-family: var(--display);
+  font-variation-settings: "wdth" 110, "wght" 600;
+  font-size: 1.12rem;
+  letter-spacing: -.01em;
+  margin: 0;
+}
+
+.card p { margin: 0; font-size: .95rem; }
+
+.card-kind {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.card-tech {
+  font-family: var(--mono);
+  font-size: .74rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding-top: .7rem;
+  margin-top: .2rem;
+}
+
+.spec { display: grid; }
+
+.spec-row {
+  display: grid;
+  gap: .45rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.spec-row:first-child { border-top: 2px solid var(--ink); }
+
+@media (min-width: 720px) {
+  .spec-row { grid-template-columns: 13rem minmax(0, 1fr); gap: 1.5rem; align-items: baseline; }
+}
+
+.spec-label {
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+.chip {
+  font-family: var(--mono);
+  font-size: .78rem;
+  line-height: 1.35;
+  padding: .18rem .55rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chip--core { border-color: var(--chip-core); }
+
+.chip--ai {
+  border-color: var(--chip-ai);
+  color: var(--signal);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: .74rem;
+  color: var(--muted);
+}
+
+.legend span { display: inline-flex; align-items: center; gap: .45rem; }
+
+.legend i {
+  width: .6rem;
+  height: .6rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.legend .key-core { color: var(--accent); }
+.legend .key-ai { color: var(--signal); }
+
+.footer {
+  padding: var(--stack) 0 clamp(3rem, 6vw, 5rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.footer-line {
+  font-family: var(--display);
+  font-variation-settings: "wdth" 112, "wght" 600;
+  font-size: clamp(1.35rem, 4vw, 2.4rem);
+  letter-spacing: -.02em;
+  margin: 0;
+  max-width: 24ch;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise .7s cubic-bezier(.2, .7, .3, 1) forwards;
+}
+
+.reveal:nth-of-type(2) { animation-delay: .07s; }
+.reveal:nth-of-type(3) { animation-delay: .14s; }
+
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; opacity: 1; transform: none; }
+  a { transition: none; }
+}
+
+@media print {
+  :root {
+    --paper: #fff;
+    --surface: #fff;
+    --ink: #000;
+    --muted: #444;
+    --rule: #bbb;
+    --accent: #000;
+    --signal: #333;
+    --stack: 1.6rem;
+    --shadow: none;
+  }
+  body { font-size: 10.5pt; }
+  .name { font-size: 34pt; }
+  .section { padding: 1.2rem 0; }
+  .entry, .card, .spec-row { break-inside: avoid; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .reveal { animation: none; opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-grid">
+    <div>
+      <p class="eyebrow">Senior iOS Engineer · AI-powered apps · Kyiv, Ukraine</p>
+      <h1 class="name">Anton<br>Zinin</h1>
+      <p class="role">I put <em>AI into apps that ship</em> — model integration, generative media, on-device inference, and a build that passes App Store review.</p>
+      <div class="contacts">
+        <a href="mailto:kinzzersky@gmail.com">kinzzersky@gmail.com</a>
+        <a href="tel:+380991041845">+380 99 104 18 45</a>
+        <a href="https://t.me/ankin_zersky">telegram</a>
+        <a href="https://linkedin.com/in/anton-kinzerskiy">linkedin</a>
+        <a href="https://www.upwork.com/freelancers/~014a855e477f571c67">upwork</a>
+      </div>
+    </div>
+    <div class="specblock">
+      <dl>
+        <dt>Releases</dt><dd>30+ on the App Store</dd>
+        <dt>Experience</dt><dd>3+ years, Swift</dd>
+        <dt>Platforms</dt><dd>iOS · iPadOS · macOS</dd>
+        <dt>Focus</dt><dd>Generative &amp; LLM features</dd>
+        <dt>Status</dt><dd>Open to work</dd>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="section reveal">
+  <div class="wrap section-grid">
+    <h2 class="section-title">Profile</h2>
+    <div class="prose">
+      <p>Senior iOS engineer with 3+ years of hands-on Swift and 30+ App Store releases. I take products through the full cycle — architecture, implementation, API and SDK integration, monetisation, release, and whatever review throws back — on new builds and inherited codebases alike. Recent work sits on the AI side of that: generative and LLM-driven features in consumer apps.</p>
+      <p>I ship LLM features into consumer apps the way they actually earn their place — natural-language input mapped to app behaviour, not another chat window bolted onto a menu. And I stay accountable past the demo: paywalls, purchase restore, offline states, memory under scroll, and the App Store review that decides whether any of it reaches a user.</p>
+      <p><strong>Generalist by choice.</strong> UIKit and SwiftUI, iOS and macOS, remote model APIs and on-device rendering, RevenueCat and analytics. If a feature needs a small backend proxy or a throwaway prototype to prove the idea first, I write that too.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="wrap section-grid">
+    <h2 class="section-title">Experience</h2>
+    <div class="entries">
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="entry-company">Light Apps</span>
+          <span>Nov 2024 — Present</span>
+          <span>Kyiv · full-time</span>
+        </div>
+        <div>
+          <h3 class="entry-role">Senior iOS Engineer</h3>
+          <ul class="bullets">
+            <li>Full-cycle iOS development: architecture, implementation from design handoff, integration, App Store release and post-release support.</li>
+            <li>Build apps from scratch and take over existing codebases — feature delivery, refactoring and stability work on live products.</li>
+            <li>Integrate AI and generative APIs into consumer apps: request lifecycle, async job handling, progress and failure states, caching and cost control.</li>
+            <li>Own onboarding, paywall and subscription flows end to end, together with the consent and privacy requirements App Store review depends on.</li>
+            <li>Build reusable component systems and complex custom interfaces across UIKit and SwiftUI, including current iOS design language.</li>
+            <li>Close the release loop: TestFlight distribution, review submissions, crash triage and memory profiling in Instruments.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="entry-company">StarMagic</span>
+          <span>Jul — Sep 2024</span>
+          <span>United Kingdom · remote</span>
+        </div>
+        <div>
+          <h3 class="entry-role">iOS Engineer</h3>
+          <ul class="bullets">
+            <li>Delivered features and fixed defects in a live application built on RxSwift and Objective-C.</li>
+            <li>Worked inside an established codebase without rewrites — reading someone else's architecture and shipping within it.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="entry-company">Rimone Holding</span>
+          <span>Jan — Jul 2024</span>
+          <span>France · remote</span>
+        </div>
+        <div>
+          <h3 class="entry-role">iOS Engineer</h3>
+          <ul class="bullets">
+            <li>Built a kids drawing app from scratch in SwiftUI, including timer-driven session logic.</li>
+            <li>Implemented onboarding and paywall flows that carried the app's subscription revenue.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="entry-company">Mobile Int, LLC</span>
+          <span>Oct 2023 — Jan 2024</span>
+          <span>USA · remote</span>
+        </div>
+        <div>
+          <h3 class="entry-role">iOS Engineer</h3>
+          <ul class="bullets">
+            <li>Shipped features in a VIPER production project: camera capture, REST integration, and Firebase-backed authentication and data flows.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="wrap section-grid">
+    <h2 class="section-title">What I do</h2>
+    <div class="cards">
+
+      <article class="card">
+        <span class="card-kind">AI in production</span>
+        <h3>Models wired into real apps</h3>
+        <p>Remote model APIs and on-device inference behind a native interface: request lifecycle, streaming, structured responses, fallback chains, caching, and control over latency and token cost. The parts that decide whether an AI feature feels instant or broken.</p>
+        <p class="card-tech">LLM APIs · on-device inference · streaming · tool calling</p>
+      </article>
+
+      <article class="card">
+        <span class="card-kind">Generative pipelines</span>
+        <h3>Long-running jobs that don't lose the user</h3>
+        <p>Generation work is slow and fails often. I build the orchestration around it — queueing, polling, live progress, cancellation, retry, partial results, and error states a user can actually recover from — plus the credit and quota logic that keeps inference cost under control.</p>
+        <p class="card-tech">async job orchestration · progress &amp; failure states · media caching</p>
+      </article>
+
+      <article class="card">
+        <span class="card-kind">Release &amp; review</span>
+        <h3>From branch to the App Store</h3>
+        <p>I own the release, not just the pull request: TestFlight distribution, submissions, and the privacy work AI features now require — ATT, GDPR consent, AI data disclosure, privacy manifests. I've taken apps through review and through rejections, and I know which of the two the shortcut leads to.</p>
+        <p class="card-tech">App Store review · ATT · GDPR · privacy manifests · TestFlight</p>
+      </article>
+
+      <article class="card">
+        <span class="card-kind">Revenue</span>
+        <h3>Paywalls that hold up</h3>
+        <p>Subscriptions, one-off purchases and credit packs end to end: RevenueCat and StoreKit, restore, offline fallback, post-purchase navigation without race conditions, and paywall variants measured rather than guessed.</p>
+        <p class="card-tech">RevenueCat · StoreKit · paywall A/B · analytics</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="wrap section-grid">
+    <h2 class="section-title">Stack</h2>
+    <div>
+      <p class="legend">
+        <span class="key-core"><i></i>Apple platform</span>
+        <span class="key-ai"><i></i>AI &amp; generative</span>
+      </p>
+      <div class="spec">
+
+        <div class="spec-row">
+          <div class="spec-label">Platforms</div>
+          <div class="chips">
+            <span class="chip chip--core">iOS</span>
+            <span class="chip chip--core">iPadOS</span>
+            <span class="chip chip--core">macOS</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Languages &amp; UI</div>
+          <div class="chips">
+            <span class="chip chip--core">Swift</span>
+            <span class="chip chip--core">SwiftUI</span>
+            <span class="chip chip--core">UIKit</span>
+            <span class="chip chip--core">Objective-C</span>
+            <span class="chip chip--core">Auto Layout</span>
+            <span class="chip chip--core">SnapKit</span>
+            <span class="chip chip--core">Lottie</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">AI integration</div>
+          <div class="chips">
+            <span class="chip chip--ai">LLM APIs</span>
+            <span class="chip chip--ai">FirebaseAI · Gemini</span>
+            <span class="chip chip--ai">OpenAI API</span>
+            <span class="chip chip--ai">Anthropic API</span>
+            <span class="chip chip--ai">streaming · SSE</span>
+            <span class="chip chip--ai">structured outputs</span>
+            <span class="chip chip--ai">tool &amp; function calling</span>
+            <span class="chip chip--ai">prompt design</span>
+            <span class="chip chip--ai">context management</span>
+            <span class="chip chip--ai">retry &amp; fallback chains</span>
+            <span class="chip chip--ai">token cost control</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">On-device ML</div>
+          <div class="chips">
+            <span class="chip chip--ai">Apple Foundation Models</span>
+            <span class="chip chip--ai">Core ML</span>
+            <span class="chip chip--ai">Create ML</span>
+            <span class="chip chip--ai">Vision</span>
+            <span class="chip chip--ai">VisionKit</span>
+            <span class="chip chip--ai">Speech</span>
+            <span class="chip chip--ai">Natural Language</span>
+            <span class="chip chip--ai">Sound Analysis</span>
+            <span class="chip chip--ai">coremltools</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Generative media</div>
+          <div class="chips">
+            <span class="chip chip--ai">text-to-image</span>
+            <span class="chip chip--ai">text-to-video</span>
+            <span class="chip chip--ai">image-to-video</span>
+            <span class="chip chip--ai">style transfer</span>
+            <span class="chip chip--ai">async job orchestration</span>
+            <span class="chip chip--ai">progress &amp; failure recovery</span>
+            <span class="chip chip--ai">credit &amp; quota logic</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Voice &amp; multimodal</div>
+          <div class="chips">
+            <span class="chip chip--ai">speech-to-text</span>
+            <span class="chip chip--ai">text-to-speech</span>
+            <span class="chip chip--ai">real-time audio streaming</span>
+            <span class="chip chip--ai">image &amp; document input</span>
+            <span class="chip chip--ai">camera-driven inference</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">AI infrastructure</div>
+          <div class="chips">
+            <span class="chip chip--ai">Python prototyping</span>
+            <span class="chip chip--ai">FastAPI proxy</span>
+            <span class="chip chip--ai">API key protection</span>
+            <span class="chip chip--ai">usage metering</span>
+            <span class="chip chip--ai">embeddings</span>
+            <span class="chip chip--ai">vector search · RAG</span>
+            <span class="chip chip--ai">MCP</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Media &amp; graphics</div>
+          <div class="chips">
+            <span class="chip chip--core">AVFoundation</span>
+            <span class="chip chip--core">Core Image</span>
+            <span class="chip chip--core">CADisplayLink</span>
+            <span class="chip chip--core">Core Animation</span>
+            <span class="chip chip--core">camera capture</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Architecture</div>
+          <div class="chips">
+            <span class="chip chip--core">MVVM</span>
+            <span class="chip chip--core">Clean</span>
+            <span class="chip chip--core">VIPER</span>
+            <span class="chip chip--core">Combine</span>
+            <span class="chip chip--core">RxSwift</span>
+            <span class="chip chip--core">async/await</span>
+            <span class="chip chip--core">Swift Concurrency</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Data &amp; backend</div>
+          <div class="chips">
+            <span class="chip chip--core">Firebase</span>
+            <span class="chip chip--core">Firestore</span>
+            <span class="chip chip--core">Remote Config</span>
+            <span class="chip chip--core">REST</span>
+            <span class="chip chip--core">Alamofire</span>
+            <span class="chip chip--core">Codable</span>
+            <span class="chip chip--core">Core Data</span>
+            <span class="chip chip--core">Realm</span>
+            <span class="chip chip--core">Keychain</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Monetisation &amp; compliance</div>
+          <div class="chips">
+            <span class="chip chip--core">RevenueCat</span>
+            <span class="chip chip--core">StoreKit</span>
+            <span class="chip chip--core">paywall flows</span>
+            <span class="chip chip--core">AdMob</span>
+            <span class="chip chip--core">ATT</span>
+            <span class="chip chip--core">GDPR · UMP</span>
+            <span class="chip chip--ai">AI data consent</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Tooling</div>
+          <div class="chips">
+            <span class="chip chip--core">Xcode</span>
+            <span class="chip chip--core">Instruments</span>
+            <span class="chip chip--core">SPM</span>
+            <span class="chip chip--core">CocoaPods</span>
+            <span class="chip chip--core">TestFlight</span>
+            <span class="chip chip--core">Git</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">AI-assisted engineering</div>
+          <div class="chips">
+            <span class="chip chip--ai">Claude Code</span>
+            <span class="chip chip--ai">Cursor</span>
+            <span class="chip chip--ai">agentic workflows</span>
+            <span class="chip chip--ai">AI-assisted code review</span>
+          </div>
+        </div>
+
+        <div class="spec-row">
+          <div class="spec-label">Exploring</div>
+          <div class="chips">
+            <span class="chip chip--ai">on-device fine-tuning</span>
+            <span class="chip chip--ai">local model runtimes</span>
+            <span class="chip chip--core">visionOS</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="eyebrow">Open to work</p>
+    <p class="footer-line">Looking for iOS roles with an AI focus — full-time or contract, remote.</p>
+    <div class="contacts">
+      <a href="mailto:kinzzersky@gmail.com">kinzzersky@gmail.com</a>
+      <a href="https://t.me/ankin_zersky">telegram</a>
+      <a href="https://linkedin.com/in/anton-kinzerskiy">linkedin</a>
+      <a href="https://www.upwork.com/freelancers/~014a855e477f571c67">upwork</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
