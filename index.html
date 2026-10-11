@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Anton Zinin — Senior iOS / macOS Engineer</title>
+<meta name="description" content="Senior iOS and macOS engineer. Swift and SwiftUI, 30+ App Store releases, native apps from first prototype to approved review, built with AI coding agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --background: #ffffff;
+  --surface: #f5f5f7;
+  --text-primary: #1c1c1e;
+  --text-secondary: #3a3a3c;
+  --text-muted: #6b6b70;
+  --line: #d8d8dc;
+  --accent: #0a66d8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #111113;
+    --surface: #1c1c1f;
+    --text-primary: #f2f2f4;
+    --text-secondary: #c7c7cc;
+    --text-muted: #8e8e93;
+    --line: #2f2f33;
+    --accent: #5aa2ff;
+  }
+}
+:root[data-theme="dark"] {
+  --background: #111113;
+  --surface: #1c1c1f;
+  --text-primary: #f2f2f4;
+  --text-secondary: #c7c7cc;
+  --text-muted: #8e8e93;
+  --line: #2f2f33;
+  --accent: #5aa2ff;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.page { max-width: 880px; margin: 0 auto; padding: 56px 24px 64px; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+h1 { font-size: clamp(40px, 7vw, 56px); line-height: 1.05; font-weight: 700; letter-spacing: -.025em; margin: 10px 0 14px; }
+.tagline { font-size: 19px; color: var(--text-secondary); max-width: 640px; margin: 0 0 20px; }
+.contacts { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; margin-bottom: 20px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+.button { display: inline-block; padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 15px; }
+.button-primary { background: var(--accent); color: #fff; }
+.button-secondary { background: var(--surface); color: var(--text-primary); }
+.button:hover { text-decoration: none; opacity: .9; }
+.facts { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0; margin-bottom: 40px; }
+.fact-label { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); font-weight: 600; }
+.fact-value { font-size: 15px; font-weight: 600; }
+section { display: grid; grid-template-columns: 150px 1fr; gap: 24px; margin-bottom: 44px; }
+section > h2 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin: 4px 0 0; }
+section p { margin: 0 0 12px; color: var(--text-secondary); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.card-kicker { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); font-weight: 600; }
+.card h3 { font-size: 17px; margin: 4px 0 6px; }
+.card p { font-size: 15px; margin-bottom: 6px; }
+.card-tags { font-size: 13px; color: var(--text-muted); }
+.job { display: grid; grid-template-columns: 200px 1fr; gap: 16px; margin-bottom: 28px; }
+.job-company { font-weight: 700; font-size: 16px; }
+.job-meta { font-size: 14px; color: var(--text-muted); }
+.job h3 { font-size: 17px; margin: 0 0 6px; }
+.job ul { margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: 15px; }
+.job li { margin-bottom: 4px; }
+.stack-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.stack-row:last-child { border-bottom: none; }
+.stack-label { font-weight: 600; }
+.stack-items { color: var(--text-secondary); }
+footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 15px; color: var(--text-secondary); }
+footer strong { color: var(--text-primary); }
+@media (max-width: 720px) {
+  .page { padding: 36px 16px 48px; }
+  .facts { grid-template-columns: repeat(2, 1fr); }
+  section { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
+  .grid { grid-template-columns: 1fr; }
+  .job { grid-template-columns: 1fr; gap: 6px; }
+  .stack-row { grid-template-columns: 1fr; gap: 2px; }
+}
+@media print {
+  .actions { display: none; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="eyebrow">Senior iOS / macOS Engineer · Swift, SwiftUI · Kyiv, Ukraine</div>
+  <h1>Anton Zinin</h1>
+  <p class="tagline">I build native Apple apps from the first prototype to the App Store — and I ship them fast with AI coding agents as part of my daily workflow.</p>
+
+  <div class="contacts">
+    <a href="mailto:kinzzersky@gmail.com">kinzzersky@gmail.com</a>
+    <a href="tel:+380991041845">+380 99 104 18 45</a>
+    <a href="https://t.me/ankin_zersky">t.me/ankin_zersky</a>
+    <a href="https://www.linkedin.com/in/anton-kinzerskiy">LinkedIn</a>
+    <a href="https://www.upwork.com/freelancers/~014a855e477f571c67">Upwork</a>
+  </div>
+
+  <div class="actions">
+    <a class="button button-primary" href="Anton-Zinin-iOS-macOS-Engineer.pdf" download>Download PDF</a>
+    <a class="button button-secondary" href="mailto:kinzzersky@gmail.com">Get in touch</a>
+  </div>
+
+  <div class="facts">
+    <div><div class="fact-label">Releases</div><div class="fact-value">30+ on the App Store</div></div>
+    <div><div class="fact-label">Experience</div><div class="fact-value">3+ years, Swift</div></div>
+    <div><div class="fact-label">Platforms</div><div class="fact-value">iOS · iPadOS · macOS</div></div>
+    <div><div class="fact-label">Workflow</div><div class="fact-value">Claude Code · Codex</div></div>
+    <div><div class="fact-label">Format</div><div class="fact-value">Remote · part-time</div></div>
+  </div>
+
+  <section>
+    <h2>Profile</h2>
+    <div>
+      <p>Native iOS and macOS engineer with 3+ years of hands-on Swift and 30+ App Store releases. I take products through the full cycle — architecture, UI from design handoff, persistence and sync, monetisation, release and review — on new builds and inherited codebases alike.</p>
+      <p>I work product-first: I care about what the user actually gets, push back when scope doesn't match the goal, and prefer a working prototype over a long spec. AI coding agents are a normal part of how I build — I set up the project conventions, plan with the agent, review every change and keep the codebase clean as it grows.</p>
+      <p>Most of my work is with small remote teams in the UK, France and the USA, alongside designers, product owners, backend engineers and QA. I communicate openly, write things down and keep agreements clear.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I do</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-kicker">Native apps from zero</div>
+        <h3>iOS and macOS in Swift</h3>
+        <p>SwiftUI-first apps with UIKit where it pays off: navigation, custom components, text-heavy and editor-like screens, local persistence and offline-friendly data flows.</p>
+        <div class="card-tags">SwiftUI · UIKit · AppKit basics · SwiftData · Core Data</div>
+      </div>
+      <div class="card">
+        <div class="card-kicker">AI-assisted development</div>
+        <h3>Shipping faster with coding agents</h3>
+        <p>Daily work in Claude Code and Codex: CLAUDE.md conventions, plan mode, per-screen cycles, Figma-to-code via MCP. Fast prototypes, then production-quality code I fully own and review.</p>
+        <div class="card-tags">Claude Code · Codex · Cursor · MCP · rapid prototyping</div>
+      </div>
+      <div class="card">
+        <div class="card-kicker">Product and release</div>
+        <h3>From idea to the App Store</h3>
+        <p>Onboarding, paywalls and subscriptions, analytics and remote config, TestFlight, submissions and privacy requirements. I've taken apps through review and through rejections.</p>
+        <div class="card-tags">RevenueCat · StoreKit · Firebase · TestFlight · App Store review</div>
+      </div>
+      <div class="card">
+        <div class="card-kicker">Collaboration</div>
+        <h3>Small team, real ownership</h3>
+        <p>Comfortable owning a whole feature end to end — splitting work with backend, triaging QA findings, running live demos for the team and stakeholders.</p>
+        <div class="card-tags">remote · async · code review · live demos</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div>
+      <div class="job">
+        <div><div class="job-company">Inoviscope</div><div class="job-meta">Jul 2025 — Present<br>USA · remote · contract</div></div>
+        <div>
+          <h3>iOS Engineer</h3>
+          <ul>
+            <li>Develop and maintain two iOS apps of a healthcare product (provider and patient) in SwiftUI + Combine with Firebase.</li>
+            <li>Own social and invite features end to end: search, connections, requests and deep-link invites.</li>
+            <li>Work closely with the backend engineer, product owner and QA — split scope, ship through reviewed PRs, demo results to the team.</li>
+            <li>Build account and onboarding flows shared between the app and the backend.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div><div class="job-company">Light Apps</div><div class="job-meta">Nov 2024 — Present<br>Kyiv · full-time</div></div>
+        <div>
+          <h3>Senior iOS Engineer</h3>
+          <ul>
+            <li>Full-cycle development of consumer apps: architecture, implementation from Figma, integrations, App Store release and post-release support.</li>
+            <li>Build new apps from scratch and take over existing codebases — feature delivery, refactoring and stability work on live products.</li>
+            <li>Migrated a UIKit chat product to SwiftUI with SwiftData persistence and a router-based navigation layer.</li>
+            <li>Set up a Claude Code + Figma MCP workflow that applies new designs to the UI layer while keeping business logic intact.</li>
+            <li>Own onboarding, paywall and subscription flows, plus consent and privacy work required for review.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div><div class="job-company">StarMagic</div><div class="job-meta">Jul — Sep 2024<br>United Kingdom · remote</div></div>
+        <div>
+          <h3>iOS Engineer</h3>
+          <ul>
+            <li>Delivered features and fixed defects in a live app built on RxSwift and Objective-C, working inside an established architecture.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div><div class="job-company">Rimone Holding</div><div class="job-meta">Jan — Jul 2024<br>France · remote</div></div>
+        <div>
+          <h3>iOS Engineer</h3>
+          <ul>
+            <li>Built a kids drawing app from scratch in SwiftUI, with onboarding and paywall flows that carried its subscription revenue.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div><div class="job-company">Mobile Int, LLC</div><div class="job-meta">Oct 2023 — Jan 2024<br>USA · remote</div></div>
+        <div>
+          <h3>iOS Engineer</h3>
+          <ul>
+            <li>Shipped features in a VIPER project: camera capture, REST integration and Firebase-backed authentication.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Stack</h2>
+    <div>
+      <div class="stack-row"><div class="stack-label">Platforms</div><div class="stack-items">iOS · iPadOS · macOS</div></div>
+      <div class="stack-row"><div class="stack-label">Languages and UI</div><div class="stack-items">Swift · SwiftUI · UIKit · AppKit basics · Objective-C · SnapKit · Lottie</div></div>
+      <div class="stack-row"><div class="stack-label">Architecture</div><div class="stack-items">MVVM · Clean · VIPER · Combine · RxSwift · async/await · Swift Concurrency</div></div>
+      <div class="stack-row"><div class="stack-label">Data</div><div class="stack-items">SwiftData · Core Data · Realm · Firestore · Cloud Functions · Remote Config · REST · Alamofire · Keychain</div></div>
+      <div class="stack-row"><div class="stack-label">Media</div><div class="stack-items">AVFoundation · Core Image · Core Animation · Vision · Speech</div></div>
+      <div class="stack-row"><div class="stack-label">AI in apps</div><div class="stack-items">LLM APIs (OpenAI, Anthropic, Gemini) · streaming · Apple Foundation Models · Core ML</div></div>
+      <div class="stack-row"><div class="stack-label">Monetisation</div><div class="stack-items">RevenueCat · StoreKit · AdMob · ATT · GDPR / UMP</div></div>
+      <div class="stack-row"><div class="stack-label">Tooling</div><div class="stack-items">Xcode · Instruments · SPM · XcodeGen · TestFlight · Git · Claude Code · Codex · Cursor</div></div>
+      <div class="stack-row"><div class="stack-label">Open to</div><div class="stack-items">cross-platform development as the product grows</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Looking for</strong> a product team to build with — iOS / macOS, remote, full-time or part-time.<br>
+    <a href="mailto:kinzzersky@gmail.com">kinzzersky@gmail.com</a> · <a href="https://t.me/ankin_zersky">t.me/ankin_zersky</a> · <a href="https://www.upwork.com/freelancers/~014a855e477f571c67">Upwork</a>
+  </footer>
+
+</main>
+</body>
+</html>
